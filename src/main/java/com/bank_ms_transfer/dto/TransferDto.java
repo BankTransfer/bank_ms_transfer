@@ -1,4 +1,4 @@
 package com.bank_ms_transfer.dto;
 
-public class Dto {
+public class TransferDto {
 }
