@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: ms-human
+  datasource:
+    url: jdbc:mysql://localhost:3306/ms_transfer
+    password: root
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+  liquibase:
+    change-log: classpath:/liquibase/changelog-master.yml
+    enabled: true
+
+server:
+  port: 5050
