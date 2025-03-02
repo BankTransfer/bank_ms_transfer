@@ -50,17 +50,17 @@ public class TransferService {
         }
 
         transferDto.setTransferStatus(TransferStatus.PENDING);
-        TransferEntity entity = transferMapper.toEntity(transferDto);
+        TransferEntity entity = transferMapper.toTransferEntity(transferDto);
         TransferEntity saveEntity = transferRepository.save(entity);
 
         log.info("Transfer created with ID: {}", saveEntity.getId());
-        return transferMapper.toDto(saveEntity);
+        return transferMapper.toTransferDto(saveEntity);
     }
 
     public TransferDto getTransferById(Long id) {
         log.info("Get transfer by ID: {}", id);
         return transferMapper
-                .toDto(transferRepository
+                .toTransferDto(transferRepository
                         .findById(id)
                         .orElseThrow(() -> new RuntimeException("Transfer not found with ID: " + id)));
     }
@@ -72,7 +72,16 @@ public class TransferService {
         return transferRepository
                 .findAll()
                 .stream()
-                .map(transferMapper::toDto)
+                .map(transferMapper::toTransferDto)
                 .collect(Collectors.toList());
     }
+
+    public void saveTransfer(TransferDto transferDto) {
+        transferRepository.save(transferMapper.toTransferEntity(transferDto));
+    }
+
+    public void deleteTransferById(Long id) {
+        transferRepository.deleteById(id);
+    }
+
 }
