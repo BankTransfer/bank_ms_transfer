@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Data
 public class TransferDto {
-    private Long id;
     private TransferType transferType;
     private TransferStatus transferStatus;
 
@@ -20,7 +19,4 @@ public class TransferDto {
 
     private BigDecimal amount;
     private String currency;
-
-    private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
 }

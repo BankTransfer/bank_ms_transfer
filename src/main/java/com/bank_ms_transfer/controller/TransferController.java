@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/transfer")
 public class TransferController {
     private final TransferService transferService;
 
@@ -28,5 +29,15 @@ public class TransferController {
     @GetMapping("/getAll")
     public ResponseEntity<List<TransferDto>> getAllTransfers() {
         return ResponseEntity.ok(transferService.getAllTransfers());
+    }
+
+    @PostMapping
+    public void saveTransfer(@RequestBody TransferDto transferDto) {
+        transferService.saveTransfer(transferDto);
+    }
+
+    @DeleteMapping
+    public void deleteTransferById(Long id) {
+        transferService.deleteTransferById(id);
     }
 }

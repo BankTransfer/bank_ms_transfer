@@ -30,13 +30,17 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'mysql:mysql-connector-java:8.0.33'
+	implementation 'com.mysql:mysql-connector-j:9.2.0'
 	implementation 'org.antlr:antlr4-runtime:4.13.0'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
 	implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.31.0'
+	implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.6.3'
+	implementation group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.6.3'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+	testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
