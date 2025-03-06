@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "user", schema = "ms_transfer")
 @NoArgsConstructor
 @Data
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -32,7 +32,7 @@ public class User {
 
     @OneToOne
     @JoinColumn(name = "address_id")
-    private Address address;
+    private AddressEntity address;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

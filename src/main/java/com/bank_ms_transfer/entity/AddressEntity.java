@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "address", schema = "ms_transfer")
 @NoArgsConstructor
 @Data
-public class Address {
+public class AddressEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
