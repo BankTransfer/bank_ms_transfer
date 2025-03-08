@@ -1,7 +1,9 @@
 package com.bank_ms_transfer.mapper;
 
-import com.bank_ms_transfer.dto.TransferDto;
-import com.bank_ms_transfer.entity.TransferEntity;
+import com.bank_ms_transfer.dto.CardToAccountDto;
+import com.bank_ms_transfer.dto.CardToCardDto;
+import com.bank_ms_transfer.entity.CardToAccountEntity;
+import com.bank_ms_transfer.entity.CardToCardEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
@@ -10,7 +12,12 @@ import org.mapstruct.ReportingPolicy;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface TransferMapper {
 
-    public TransferDto toTransferDto(TransferEntity entity);
+   CardToAccountDto toCardToAccountDto(CardToAccountEntity cardToAccountEntity);
 
-    public TransferEntity toTransferEntity(TransferDto dto);
+   CardToAccountEntity toCardToAccountEntity(CardToAccountDto cardToAccountDto);
+
+   CardToCardDto toCardToCardDto(CardToCardEntity cardToCardEntity);
+
+   CardToCardEntity toCardToCardEntity(CardToCardDto cardToCardDto);
+
 }

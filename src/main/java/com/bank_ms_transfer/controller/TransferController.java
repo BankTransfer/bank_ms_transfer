@@ -1,7 +1,6 @@
 package com.bank_ms_transfer.controller;
 
 import com.bank_ms_transfer.dto.TransferDto;
-import com.bank_ms_transfer.enums.TransferType;
 import com.bank_ms_transfer.service.TransferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
