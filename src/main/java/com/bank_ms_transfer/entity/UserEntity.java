@@ -30,7 +30,7 @@ public class UserEntity {
     @Column(name = "phone")
     private String phone;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private AddressEntity address;
 
