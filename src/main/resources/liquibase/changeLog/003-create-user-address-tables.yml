@@ -1,0 +1,90 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_address_table_v3
+      author: Gazirsharif
+      changes:
+        - createTable:
+            tableName: address
+            schemaName: ms_transfer
+
+            columns:
+              - column:
+                  name: address_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+
+              - column:
+                  name: street
+                  type: VARCHAR(255)
+
+              - column:
+                  name: city
+                  type: VARCHAR(255)
+
+              - column:
+                  name: state
+                  type: VARCHAR(255)
+
+              - column:
+                  name: country
+                  type: VARCHAR(255)
+
+              - column:
+                  name: postal_code
+                  type: VARCHAR(50)
+
+  - changeSet:
+      id: create_user_table_v3
+      author: Gazirsharif
+      changes:
+        - createTable:
+            tableName: user
+            schemaName: ms_transfer
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+
+              - column:
+                  name: first_name
+                  type: VARCHAR(255)
+
+              - column:
+                  name: last_name
+                  type: VARCHAR(255)
+
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+
+              - column:
+                  name: phone
+                  type: VARCHAR(50)
+
+              - column:
+                  name: address_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_user_address
+                    references: ms_transfer.address(address_id)
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
