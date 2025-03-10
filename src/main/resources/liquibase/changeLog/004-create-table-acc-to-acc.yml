@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: acc-to-acc
+      author: Inna Sorokina
+      changes:
+        - createTable:
+            tableName: account_to_account
+            schemaName: ms_transfer
+            columns:
+              - column:
+                  name: id
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: from_account
+                  type: VARCHAR(20)
+
+              - column:
+                  name: to_account
+                  type: VARCHAR(20)
+
+              - column:
+                  name: amount
+                  type: DECIMAL(15,2)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: currency
+                  type: CHAR(3)
+                  defaultValue: "RUB"
+
+              - column:
+                  name: status
+                  type: VARCHAR(10)
+                  defaultValue: "PENDING"
+                  constraints:
+                    checkConstraint: "status IN ('PENDING', 'COMPLETED', 'FAILED')"
+
+              - column:
+                  name: created_at
+                  type: timestamp(6)
+
+              - column:
+                  name: updated_at
+                  type: timestamp(6)
