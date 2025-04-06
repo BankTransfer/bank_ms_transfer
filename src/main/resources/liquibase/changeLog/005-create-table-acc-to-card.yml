@@ -1,52 +1,24 @@
 databaseChangeLog:
   - changeSet:
-      id: create_table
+      id: acc-to-card
       author: Inna Sorokina
       changes:
         - createTable:
-            tableName: transfers
+            tableName: account_to_card
             schemaName: ms_transfer
             columns:
               - column:
-                  name: id #номер транзакции
-                  type: BIGINT
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-
-              - column:
-                  name: transfer_type
+                  name: id
                   type: VARCHAR(20)
                   constraints:
                     nullable: false
-                    checkConstraint: "transfer_type IN ('CARD_TO_CARD', 'CARD_TO_ACCOUNT', 'ACCOUNT_TO_ACCOUNT', 'ACCOUNT_TO_CARD')"
-
-              - column:
-                  name: from_user_id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
-
-              - column:
-                  name: to_user_id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
-
-              - column:
-                  name: from_pan
-                  type: VARCHAR(25)
-
-              - column:
-                  name: to_pan
-                  type: VARCHAR(25)
 
               - column:
                   name: from_account
                   type: VARCHAR(20)
 
               - column:
-                  name: to_account
+                  name: to_card
                   type: VARCHAR(20)
 
               - column:
