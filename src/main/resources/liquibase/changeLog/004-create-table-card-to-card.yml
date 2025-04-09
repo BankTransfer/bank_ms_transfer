@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: card-to-card
+      author: Ruslan Sharovatov
+      changes:
+        - createTable:
+            tableName: card_to_card
+            schemaName: ms_transfer
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+
+              - column:
+                  name: user_id
+                  type: BIGINT
+
+              - column:
+                  name: from_card
+                  type: VARCHAR(20)
+
+              - column:
+                  name: to_card
+                  type: VARCHAR(20)
+
+              - column:
+                  name: amount
+                  type: DECIMAL(15,2)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: currency
+                  type: CHAR(3)
+                  defaultValue: "RUB"
+
+              - column:
+                  name: status
+                  type: VARCHAR(10)
+                  defaultValue: "PENDING"
+                  constraints:
+                    checkConstraint: "status IN ('PENDING', 'COMPLETED', 'FAILED')"
+
+              - column:
+                  name: created_at
+                  type: timestamp(6)
+
+              - column:
+                  name: updated_at
+                  type: timestamp(6)

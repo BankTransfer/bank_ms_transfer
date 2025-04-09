@@ -1,12 +1,15 @@
 package com.bank_ms_transfer.service;
 
 import com.bank_ms_transfer.dto.CardToAccountDto;
+import com.bank_ms_transfer.exception.InvalidAmountException;
+import com.bank_ms_transfer.exception.InvalidPanException;
 import com.bank_ms_transfer.mapper.TransferMapper;
 import com.bank_ms_transfer.repository.CardToAccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +39,13 @@ public class CardToAccountService {
     }
 
     public void saveCardToAccount(CardToAccountDto cardToAccountDto) {
+        if(cardToAccountDto.getFromCard().length() != 16) {
+            throw new InvalidPanException("Card number must contain 16 symbols !");
+        }
+        if(cardToAccountDto.getAmount().compareTo(BigDecimal.ZERO) == -1 ||
+                cardToAccountDto.getAmount().compareTo(BigDecimal.ZERO) == 0) {
+            throw new InvalidAmountException("Invalid amount value !");
+        }
        cardToAccountRepository.save(transferMapper.toCardToAccountEntity(cardToAccountDto));
     }
 

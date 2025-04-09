@@ -19,18 +19,8 @@ import java.time.LocalDateTime;
 public class AccountToAccountEntity {
 
     @Id
-    @GeneratedValue(generator = "custom-id-generator")
-    @GenericGenerator(
-            name = "custom-id-generator",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = {
-                    @Parameter(name = "sequence_name", value = "my_sequence"),
-                    @Parameter(name = "increment_size", value = "1"),
-                    @Parameter(name = "number_format", value = "a2a-%d")
-            }
-    )
-    @Column
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "from_account", nullable = false)
     private String fromAccount;

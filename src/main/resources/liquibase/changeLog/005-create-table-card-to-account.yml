@@ -1,20 +1,25 @@
 databaseChangeLog:
   - changeSet:
-      id: acc-to-acc
-      author: Inna Sorokina
+      id: card-to-account
+      author: Ruslan Sharovatov
       changes:
         - createTable:
-            tableName: account_to_account
+            tableName: card_to_account
             schemaName: ms_transfer
             columns:
               - column:
                   name: id
-                  type: VARCHAR(20)
+                  type: BIGINT
+                  autoIncrement: true
                   constraints:
-                    nullable: false
+                    primaryKey: true
 
               - column:
-                  name: from_account
+                  name: user_id
+                  type: BIGINT
+
+              - column:
+                  name: from_card
                   type: VARCHAR(20)
 
               - column:
