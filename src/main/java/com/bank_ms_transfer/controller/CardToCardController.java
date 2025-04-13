@@ -2,6 +2,7 @@ package com.bank_ms_transfer.controller;
 
 import com.bank_ms_transfer.dto.CardToCardDto;
 import com.bank_ms_transfer.service.CardToCardService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class CardToCardController {
     }
 
     @PostMapping
-    public void save(@RequestBody CardToCardDto cardToCardDto) {
+    public void save(@Valid @RequestBody CardToCardDto cardToCardDto) {
         cardToCardService.saveCardToCard(cardToCardDto);
     }
 

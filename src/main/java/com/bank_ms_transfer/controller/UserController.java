@@ -2,7 +2,9 @@ package com.bank_ms_transfer.controller;
 
 import com.bank_ms_transfer.dto.UserDto;
 import com.bank_ms_transfer.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,12 +26,13 @@ public class UserController {
     }
 
     @PostMapping
-    public void save(@RequestBody UserDto userDto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void save(@RequestBody @Valid UserDto userDto) {
         userService.saveUser(userDto);
     }
 
-    @DeleteMapping
-    public void deleteById(Long id) {
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id) {
         userService.deleteUserById(id);
     }
 }
