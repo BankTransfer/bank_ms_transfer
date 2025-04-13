@@ -1,6 +1,9 @@
 package com.bank_ms_transfer.service;
 
 import com.bank_ms_transfer.dto.UserDto;
+import com.bank_ms_transfer.entity.UserEntity;
+import com.bank_ms_transfer.exception.UserAlreadyExistsException;
+import com.bank_ms_transfer.exception.UserNotFoundException;
 import com.bank_ms_transfer.mapper.TransferMapper;
 import com.bank_ms_transfer.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +26,7 @@ public class UserService {
         return transferMapper
                 .toUserDto(userRepository
                         .findById(id)
-                        .orElseThrow(() -> new RuntimeException("Transfer not found with ID: " + id)));
+                        .orElseThrow(() -> new UserNotFoundException(id)));
     }
 
     public List<UserDto> getAllUser() {
@@ -36,11 +39,18 @@ public class UserService {
     }
 
     public void saveUser(UserDto userDto) {
+        List<UserEntity> allUsers = userRepository.findAll();
+        boolean userExists = allUsers.stream()
+                .anyMatch(user -> user.getEmail().equals(userDto.getEmail()));
+
+        if (userExists) {
+            throw new UserAlreadyExistsException("User already exists with email: " + userDto.getEmail());
+        }
+
         userRepository.save(transferMapper.toUserEntity(userDto));
     }
 
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
-
 }
